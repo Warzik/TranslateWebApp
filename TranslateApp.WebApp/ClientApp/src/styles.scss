@@ -1,0 +1,236 @@
+/* You can add global styles to this file, and also import other style files */
+$fa-font-path: "~font-awesome/fonts";
+@import 'variables';
+@import '../node_modules/font-awesome/scss/font-awesome';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+  width: 100%;
+  transition: all 0.6s;
+  position: absolute;
+  top: 60px;
+  right: 0;
+}
+
+#content.active {
+  width: 100%;
+}
+
+
+.my-tooltip .tooltip-inner {
+  background-color: #007bff;
+}
+
+.my-tooltip .arrow::before {
+  border-top-color: #007bff;
+}
+
+body {
+  background: #fafafa;
+}
+
+a {
+  color: #4394c9 !important;
+  text-decoration: none !important;
+  transition: all 0.3s;
+}
+
+a:hover,
+a:focus {
+  color: #76c7fc !important;
+  transition: all 0.3s;
+}
+
+
+.navbar {
+  padding: 15px 10px;
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 40px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
+}
+
+
+
+html{
+  height: 100%;
+}
+
+body{
+  height: 100%;
+}
+
+.cal-disabled , .cal-disabled :hover {
+  background-color: #eee;
+  pointer-events: none !important;
+}
+
+.cal-disabled .cal-day-number {
+  opacity: 0.1;
+}
+
+$hollowBoxSize: 1.5em;
+$hollowLight: #ECECEC;
+$hollowDark: #007bff;
+$hollowTiming: 1.25s;
+
+.hollowLoader {
+  width: $hollowBoxSize;
+  height: $hollowBoxSize;
+  animation: loaderAnim $hollowTiming infinite ease-in-out;
+  outline: 1px solid transparent;
+  .largeBox {
+    height: $hollowBoxSize;
+    width: $hollowBoxSize;
+    background-color: $hollowLight;
+    outline: 1px solid transparent;
+    position: fixed;
+  }
+  .smallBox {
+    height: $hollowBoxSize;
+    width: $hollowBoxSize;
+    background-color: $hollowDark;
+    position: fixed;
+    z-index: 1;
+    outline: 1px solid transparent;
+    animation: smallBoxAnim $hollowTiming alternate infinite ease-in-out;
+  }
+}
+
+@keyframes smallBoxAnim {
+  0% {transform: scale(0.2);}
+  100% {transform: scale(0.75);}
+}
+
+@keyframes loaderAnim {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(90deg);}
+}
+
+/* modal animation */
+.modal-content{
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+
+@keyframes example {
+  0%   {transform: scale(0.5)}
+  75%  {transform: scale(1.1)}
+  100% {transform: scale(1)}
+}
+
+a {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.dropdown .dropdown-menu {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+
+  -webkit-transition-timing-function: ease;
+  transition-timing-function:ease;
+
+  -webkit-transform: translate3d(0, 40%, 0);
+  transform: translate3d(0, 40%, 0);
+
+  pointer-events: none;
+
+  // max-height: 0;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.dropdown.show .dropdown-menu {
+  // max-height: 200px;
+  opacity: 1;
+  pointer-events: all;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+
+  -webkit-transition-timing-function: ease;
+  transition-timing-function:ease;
+
+}
+
+::-webkit-input-placeholder {
+  color: #a19a9a;
+}
+:-ms-input-placeholder {
+  color: #a19a9a;
+}
+::-ms-input-placeholder {
+  color: #a19a9a;
+}
+::placeholder {
+  color: #a19a9a;
+}
+
+
+
+.collapse:not(.show) {
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+  pointer-events: none;
+  // max-height: 0;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+  position: absolute;
+}
+
+.collapse.show {
+  // max-height: 200px;
+  opacity: 1;
+  pointer-events: all;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  #content {
+    width: calc(100% - 250px);
+  }
+
+  #content.active {
+    width: calc(100% - 90px);
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+ 
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}

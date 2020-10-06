@@ -1,0 +1,98 @@
+.page-body{
+  background-color: white;
+}
+
+.settings-card-link {
+  font-size: 2rem;
+  padding-top: 0;
+}
+.card-text {
+  font-weight: 500;
+  color: #283852;
+}
+.add-button {
+  font-size:1.5rem;
+  color:white;
+  background-color: #3283b8;
+  width:100%;
+  margin-bottom: 0.75rem;
+}
+
+.project-list{
+  margin-top:0.75rem;
+}
+
+.scrollable-menu {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+}
+
+.word-cut {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+a {
+  cursor: pointer;
+}
+
+.import-align {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+h5 {
+  color: #3283b8;
+}
+
+.card-img-top{
+  color: #3283b8;
+}
+
+$hollowBoxSize: 1.3rem;
+$hollowLight: #3283b8;
+$hollowDark:  #ECECEC;
+$hollowTiming: .6s;
+
+.hollowLoader {
+  width: $hollowBoxSize;
+  height: $hollowBoxSize;
+  animation: loaderAnim $hollowTiming infinite ease-in-out;
+  outline: 1px solid transparent;
+
+  .largeBox {
+    height: $hollowBoxSize;
+    width: $hollowBoxSize;
+    background-color: $hollowLight;
+    outline: 1px solid transparent;
+    position: fixed;
+  }
+
+  .smallBox {
+    height: $hollowBoxSize;
+    width: $hollowBoxSize;
+    background-color: $hollowDark;
+    position: fixed;
+    z-index: 1;
+    outline: 1px solid transparent;
+    animation: smallBoxAnim $hollowTiming alternate infinite ease-in-out;
+  }
+}
+
+.loader-show {
+  transition: all 0.8s;
+  opacity:1;
+}
+
+.loader-hide {
+  transition: all 0.9s;
+  opacity:0;
+}
+
+span.count-of-translate {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  color: #656060;
+}

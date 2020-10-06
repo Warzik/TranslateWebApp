@@ -1,0 +1,91 @@
+<div class="login-background">
+<div class="container ">
+  <div class=" row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class=" card card-signin  mb-5" style="margin-top:5rem;" [@OnLoad]>
+        <div class=" card-body " >
+          <h5 class="card-title text-center">Zaloguj</h5>
+          <form class="form-signin"
+                [formGroup]="loginForm"
+                (ngSubmit)="onSubmit()">
+            <div class="form-label-group">
+              <input type="text"
+                     id="inputEmail"
+                     formControlName="username"
+                     class="form-control"
+                     placeholder="Email address"
+                     spellcheck="false"
+                     [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                     autofocus />
+              <label for="inputEmail">Email</label>
+              <div *ngIf="submitted && f.username.errors"
+                   class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Email jest wymagany</div>
+                <div *ngIf="f.username.errors.pattern">Nie poprawny email</div>
+              </div>
+            </div>
+
+            <div class="form-label-group">
+              <input type="password"
+                     id="inputPassword"
+                     formControlName="password"
+                     class="form-control"
+                     spellcheck="false"
+                     placeholder="Password"
+                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <label for="inputPassword">Hasło</label>
+              <div *ngIf="submitted && f.password.errors"
+                   class="invalid-feedback">
+                <div>Hasło jest wymagane</div>
+              </div>
+            </div>
+
+            <div class="custom-control custom-checkbox mb-3">
+              <input (click)="rememberMeFunc()"
+                     type="checkbox"
+                     class="custom-control-input"
+                     id="customCheck1" />
+              <label class="custom-control-label" for="customCheck1">Zaloguj automatycznie przy każdym wizycie</label>
+            </div>
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-lg btn-primary btn-block text-uppercase">
+                Zaloguj
+                <div *ngIf="loading" class="hollowLoader float-left">
+                  <div class="largeBox"></div>
+                  <div class="smallBox"></div>
+                </div>
+
+              </button>
+
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+              <ul>
+                <li *ngFor="let error of errors">
+                  {{ error }}
+                </li>
+              </ul>
+            </div>
+            <hr class="my-4">
+            <div class="btn form-group btn-lg btn-google btn-block text-uppercase" (click)="googleLogin()">
+              <i class="fa fa-google mr-2"></i>
+              Zaloguj się za pomocą Google
+            </div>
+
+            <div class="btn form-group btn-lg btn-facebook btn-block text-uppercase" (click)="facebookLogin()">
+              <i class="fa fa-facebook-f mr-2"></i>
+              Zaloguj się za pomocą Facebook
+            </div>
+
+            <hr class="my-4" />
+            <div class="form-group row justify-content-center">
+              <a class="col-5 text-gray" [routerLink]="['/account/register']">Nie masz jeszcze konta?</a>
+              <a class="col-5 text-gray" [routerLink]="['/account/forgot-password']">Zapomniałeś hasła?</a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

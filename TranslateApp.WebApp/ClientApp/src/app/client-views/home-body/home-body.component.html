@@ -1,0 +1,403 @@
+<div style="background-color: #eef2f3">
+  <div id="content">
+
+    <div class="container  my-4">
+
+      <button type="button" (click)="openAddingModel(addingContent)" class="btn add-button"><i class="fa fa-plus"></i></button>
+
+      <div [ngClass]="{'loader-show': loading, 'loader-hide':!loading}" class="row">
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div *ngIf="!loading" class="row project-list">
+
+        <div *ngFor="let project of projects" class="col-md-4 col-sm-6 mb-4" [@OnLoad]>
+          <div class="card  text-center h-100">
+            <i class="card-img-top fa fa-language fa-5x text-center" style="padding-top:20px;"></i>
+            <div class="card-body">
+              <h5 class="card-title">{{project.title}}</h5>
+              <p class="card-text">
+                {{project.fromLanguage}} <span class="fa fa-arrow-right"></span> {{project.toLanguage}}
+              </p>
+            </div>
+
+            <div class="card-body pt-0">
+              <div class="card-description">
+                {{project.description}}
+              </div>
+            </div>
+
+            <div class="card-body settings-card-link text-center ">
+              <div class="row justify-content-between ">
+                <div class="col-4">
+                  <a (click)="openEditingModel(editContent, project)"> <i class="fa fa-cog"></i></a>
+                </div>
+                <div class="col-4">
+                  <a [routerLink]='["translator/", project.id]'><i class="fa fa-arrow-up"></i></a>
+                </div>
+                <div class="col-4">
+                  <a (click)="openDeletingModel(deletingContent, project.id)"><i class="fa fa-trash"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <span class="count-of-translate"> Ilość tłumaczeń: {{project.numberOfTranslations}} </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #addingContent>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Dodaj Projekt</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="addingModal.dismiss('Cross click');errors = [];">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addProjectForm">
+
+      <div class="form-group">
+        <label class="col control-label">Tytul projektu</label>
+        <div class="col">
+          <input type="text" formControlName="name" maxlength="100" id="name" spellcheck="false" class="form-control border-orange" [ngClass]="{ 'is-invalid': submittedAdding && f.name.errors }" />
+          <div *ngIf="submittedAdding && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Nazwa projektu jest wymagana</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col control-label"> Opis projektu</label>
+        <div class="col">
+          <input type="url" formControlName="description" id="description" spellcheck="false" class="form-control border-orange" />
+        </div>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <div class="col">
+          <input type="checkbox" [checked]="f.automaticallyTranslate.value" (change)="f.automaticallyTranslate.value = !f.automaticallyTranslate.value" class="custom-control-input" id="customCheck2" />
+          <label class="custom-control-label" for="customCheck2">Automatyczne tłumaczenie</label>
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label class="col control-label"> Wybierz języki</label>
+          <div class="row justify-content-between " style="padding:0 15px;">
+            <div class="col-5 text-left">
+              <div ngbDropdown placement="top-left"  class="d-inline-block w-100 ">
+                <button class="btn btn-outline-primary w-100" id="dropdownBasic1" ngbDropdownToggle>{{f.fromLanguage.value}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" [ngSwitch]="true">
+                  <button *ngSwitchCase="f.toLanguage.value!='Polish' && f.fromLanguage.value!='Polish'" (click)="f.fromLanguage.value='Polish'; f.importFromProject.value='Nie importuj'" class="dropdown-item">Polish</button>
+                  <button *ngSwitchCase="f.toLanguage.value!='English' && f.fromLanguage.value!='English'" (click)="f.fromLanguage.value='English'; f.importFromProject.value='Nie importuj'" class="dropdown-item">English</button>
+                  <button *ngSwitchCase="f.toLanguage.value!='German' && f.fromLanguage.value!='German'" (click)="f.fromLanguage.value='German'; f.importFromProject.value='Nie importuj'" class="dropdown-item">German</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <span class="fa fa-arrows-h text-primary" (click)="translateReplace=f.fromLanguage.value; f.fromLanguage.value=f.toLanguage.value; f.toLanguage.value=translateReplace" style="font-size: 37px; cursor:pointer"></span>
+            </div>
+            <div class="col-5 text-right">
+              <div ngbDropdown placement="top-right"  class="d-inline-block w-100">
+                <button class="btn btn-outline-primary w-100 " id="dropdownBasic2" ngbDropdownToggle>{{f.toLanguage.value}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2" [ngSwitch]="true">
+                  <button *ngSwitchCase="f.fromLanguage.value!='Polish' && f.toLanguage.value!='Polish'" (click)="f.toLanguage.value='Polish'; f.importFromProject.value='Nie importuj'" class="dropdown-item">Polish</button>
+                  <button *ngSwitchCase="f.fromLanguage.value!='English' && f.toLanguage.value!='English'" (click)=" f.toLanguage.value='English'; f.importFromProject.value='Nie importuj'" class="dropdown-item">English</button>
+                  <button *ngSwitchCase="f.fromLanguage.value!='German' && f.toLanguage.value!='German'" (click)=" f.toLanguage.value='German'; f.importFromProject.value='Nie importuj'" class="dropdown-item">German</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row justify-content-between " style="padding:0 15px;">
+            <div class="col-7 import-align">
+              Import tłumaczeń z projektu
+            </div>
+            <div class="col-5 text-right">
+              <div ngbDropdown placement="top-right" class="d-inline-block w-100">
+                <button class="btn btn-outline-primary w-100  word-cut" id="dropdownBasic4" ngbDropdownToggle>{{f.importFromProject.value}}</button>
+                <div ngbDropdownMenu class="scrollable-menu" aria-labelledby="dropdownBasic4">
+                  <button (click)="f.importFromProject.value='Nie importuj'" class="dropdown-item">Nie importuj</button>
+                  <div *ngFor="let project of projects">
+                    <button *ngIf="project.fromLanguage==f.toLanguage.value" (click)="f.importFromProject.value=project.title" class="dropdown-item">{{project.title}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+          <ul>
+            <li *ngFor="let error of errors">
+              {{ errors }}
+            </li>
+          </ul>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="addingModal.dismiss('cancel click');errors = [];">Nie</button>
+    <button type="button" ngbAutofocus class="btn btn-primary" (click)="onAddingSubmit()">Dodaj</button>
+  </div>
+
+</ng-template>
+
+
+<ng-template #editContent>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Projekt</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="editingModal.dismiss('Cross click');errors = [];">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editProjectForm">
+
+      <div class="form-group">
+        <label class="col control-label">Tytul projektu</label>
+        <div class="col">
+          <input type="text" formControlName="name" maxlength="100" id="name" spellcheck="false" class="form-control border-orange" [ngClass]="{ 'is-invalid': submittedEditing && e.name.errors }" />
+          <div *ngIf="submittedEditing && e.name.errors" class="invalid-feedback">
+            <div *ngIf="e.name.errors.required">Nazwa projektu jest wymagana</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col control-label"> Opis projektu</label>
+        <div class="col">
+          <input type="url" formControlName="description" id="description" spellcheck="false" class="form-control border-orange" />
+        </div>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <div class="col">
+          <input type="checkbox" [checked]="e.automaticallyTranslate.value" (change)="e.automaticallyTranslate.value = !e.automaticallyTranslate.value" class="custom-control-input" id="customCheck1" />
+          <label class="custom-control-label" for="customCheck1">Automatyczne tłumaczenie</label>
+        </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col control-label"> Wybierz języki</label>
+          <div class="row justify-content-between " style="padding:0 15px;">
+            <div class="col-5 text-left">
+              <div ngbDropdown placement="top-left" class="d-inline-block w-100 ">
+                <button class="btn btn-outline-primary w-100" disabled="disabled" id="dropdownBasic1" ngbDropdownToggle>{{e.fromLanguage.value}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" [ngSwitch]="true">
+                  <button *ngSwitchCase="e.toLanguage.value!='Polish' && e.fromLanguage.value!='Polish'" (click)="e.fromLanguage.value='Polish';e.importFromProject.value='Nie importuj'" class="dropdown-item">Polish</button>
+                  <button *ngSwitchCase="e.toLanguage.value!='English' && e.fromLanguage.value!='English'" (click)="e.fromLanguage.value='English';e.importFromProject.value='Nie importuj'" class="dropdown-item">English</button>
+                  <button *ngSwitchCase="e.toLanguage.value!='German' && e.fromLanguage.value!='German'" (click)="e.fromLanguage.value='German';e.importFromProject.value='Nie importuj'" class="dropdown-item">German</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <span class="fa fa-arrows-h text-primary"  style="font-size: 37px; cursor:pointer"></span>
+            </div>
+            <div class="col-5 text-right">
+              <div ngbDropdown placement="top-right" class="d-inline-block w-100">
+                <button class="btn btn-outline-primary w-100 " disabled="disabled" id="dropdownBasic2" ngbDropdownToggle>{{e.toLanguage.value}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2" [ngSwitch]="true">
+                  <button *ngSwitchCase="e.fromLanguage.value!='Polish' && e.toLanguage.value!='Polish'" (click)="e.toLanguage.value='Polish'; e.importFromProject.value='Nie importuj'" class="dropdown-item">Polish</button>
+                  <button *ngSwitchCase="e.fromLanguage.value!='English' && e.toLanguage.value!='English'" (click)=" e.toLanguage.value='English';e.importFromProject.value='Nie importuj'" class="dropdown-item">English</button>
+                  <button *ngSwitchCase="e.fromLanguage.value!='German' && e.toLanguage.value!='German'" (click)=" e.toLanguage.value='German';e.importFromProject.value='Nie impotruj'" class="dropdown-item">German</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row justify-content-between " style="padding:0 15px;">
+            <div class="col-7  import-align">
+              Import tłumaczeń z projektu
+            </div>
+            <div class="col-5 text-right">
+              <div ngbDropdown placement="top-right" class="d-inline-block w-100">
+                <button class="btn btn-outline-primary w-100 word-cut" id="dropdownBasic3" ngbDropdownToggle>{{e.importFromProject.value}}</button>
+                <div ngbDropdownMenu class="scrollable-menu" aria-labelledby="dropdownBasic3">
+                  <button (click)="e.importFromProject.value='Nie importuj'" class="dropdown-item">Nie importuj</button>
+                  <div *ngFor="let project of projects">
+                    <button *ngIf="project.fromLanguage==e.toLanguage.value" (click)="e.importFromProject.value=project.title" class="dropdown-item">{{project.title}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+          <ul>
+            <li *ngFor="let error of errors">
+              {{ errors }}
+            </li>
+          </ul>
+        </div>
+</form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="editingModal.dismiss('cancel click');errors = [];">Nie</button>
+    <button type="button" ngbAutofocus class="btn btn-primary" (click)="onEditingSubmit()">Zapisz</button>
+  </div>
+
+</ng-template>
+
+
+<ng-template #deletingContent>
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Naprawdę chcęsz usunąć project?</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="deletingModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="deletingModal.dismiss('cancel click')">Nie</button>
+    <button type="button" ngbAutofocus class="btn btn-primary" (click)="confDeleteProject()">Tak</button>
+  </div>
+
+</ng-template>
+
+
+<!--
+<div id="content">
+
+    <div id="myCarousel" class="row carousel slide">
+
+      <div *ngFor="let project of projects" class="col-lg-4 col-sm-6 portfolio-item">
+
+
+        <div class="cardwith card border-orange " (click)="clickCard($event, project.id)" style="cursor:pointer">
+
+          <div class="row d-flex justify-content-center pt-3 pb-3"><span title="{{project.name}}" class="cut-text text-center">{{project.name}}</span></div>
+
+          <div class="card-body d-flex flex-column justify-content-end ">
+            <h5 class="card-title ">
+
+              <div class="row d-flex justify-content-center pt-3 pb-3 ">
+                <a target="_blank" class="url-link cut-text-url text-center generated-url" href="/#/GetXml/Home/{{project.generatedUrl}}">GetXml/Home/{{project.generatedUrl}}</a>
+              </div>
+
+
+            </h5>
+            <div class="row d-flex justify-content-center pt-3">
+              <div class="row mainIcon">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"><a [routerLink]='["/modify-project/", project.id]' title="Edytuj projekt" class="icon-link"><img src="../../../assets/images/settings.svg" class="construct-icon mr-2" /></a></div>
+                <!--<div class="col-sm-2"><a [routerLink]='["/articles/", project.id]' title="Edytuj artykuły" class="icon-link"><img src="../../../assets/images/articleList.svg" class="construct-icon mr-2" /></a></div>
+                <div class="col-sm-2"><a style="cursor: pointer" title="Usuń projekt" class="icon-link" (click)="openComfirmModel(content, project.id)"><img src="../../../assets/images/trash.svg" class="construct-icon mr-2" /></a> </div>
+                <div class="col-sm-2">
+                  <div style="cursor: pointer" id="refreshXml-{{project.id}}" class="icon-link" title="Odśwież Xml" (click)="sendRefreshXml(project.id)"><img src="../../../assets/images/sync.svg" class="construct-icon mr-2" /></div>
+                </div>
+                <div class="col-sm-2">
+                  <div style="cursor: pointer" id="refreshArchivedArticle-{{project.id}}" class=" icon-link" title="Pobierz artykuły" (click)="sendRefreshArchivedArticle(project.id)"><img src="../../../assets/images/order.svg" class="construct-icon mr-2" /></div>
+                </div>
+                <div class="col-sm-2"></div>
+              </div>
+
+              <div class="row synchroIcon ">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+
+                <div class="col-sm-2 text-center">
+                  <div id="spinnerXml-{{project.id}}" style="display:none" class="icon-link position-absolute" title="W trakcie odświeżania"><div class="lds-ellipsis-sm" style="margin-left: 4px;"><div></div><div></div><div></div><div></div></div></div>
+                </div>
+                <div class="col-sm-2 text-center">
+                  <div id="spinnerArchivedArticle-{{project.id}}" style="display:none" class="icon-link position-absolute" title="W trakcie pobierania"><div class="lds-ellipsis-sm" style="margin-left: 24px;"><div></div><div></div><div></div><div></div></div></div>
+                </div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-1"></div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>
+    -->

@@ -1,0 +1,117 @@
+<!--<nav class="navbar navbar-expand-md navbar-dark ">
+  <div class="container">
+    <a class="navbar-brand" style="color: #76c7fc !important" [routerLink]="['/home']"> REZERWACJA <span id="logo-right" style="color:#3283b8;"><i class="fa fa-book"></i> MIEJSC </span></a>
+    <button class="navbar-toggler hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['reservation']">Reserwacja</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['contact-form']">Kontakt</a>
+        </li>
+        <li *ngIf="!statusUser" class="nav-item pl-3">
+          <a class="nav-link" [routerLink]="['/account/login']"> <i class="fa fa-sign-in pr-1 fa-lg" aria-hidden="true"></i> Zaloguj </a>
+        </li>
+        <li *ngIf="statusUser" class="nav-item pl-3">
+          <a class="nav-link" [routerLink]="['/account/login']"> <i class="fa fa-sign-in pr-1 fa-lg" aria-hidden="true"></i> Wyloguj </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>-->
+
+<nav id="sidebar" class="active">
+  <ul class="list-unstyled components" [ngClass]='{ "in": isExpanded }'>
+    <li [routerLinkActive]='["active"]' [routerLink]="['/home']" [routerLinkActiveOptions]="{exact: true}">
+      <a> <i class="fa fa-folder-o fa-lg"></i>Projekty</a>
+    </li>
+    <!--<li [routerLinkActive]='["active"]' [routerLink]="['contact-form']" >
+      <a> <i class="fa fa-address-book  fa-lg"></i>Kontakt</a>
+    </li>-->
+    <li>
+      <a> <i class="fa fa-address-book  fa-lg"></i>Kontakt</a>
+    </li>
+  </ul>
+</nav>
+
+<!--<div id="nav-top-row" class="d-flex justify-content-between">
+
+  <a class="navbar-brand " style="color: #76c7fc !important" [routerLink]="['/home']"> TRANSLATE <span id="logo-right" style="color:#3283b8;"><i class="fa fa-language m-0"></i> MASTER </span></a>
+
+  <button type="button" id="sidebarCollapse" (click)="openOrClose()" class="navbar-btn active">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+
+  <div class="col"></div>
+
+  <button type="button" id="mobile-menu" class="mr-auto navbar-btn active" (click)="openOrCloseMobile()"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class=" d-none d-md-block text-right">
+    <div>
+      <a class="nav-link" [routerLink]="['/account/login']"> <i class="fa fa-sign-in" aria-hidden="true"></i> Wyloguj </a>
+    </div>
+  </div>
+
+</div>-->
+
+
+<nav class="navbar justify-content-between">
+
+  <a class="navbar-brand " style="color: #76c7fc !important" [routerLink]="['/home']"> TRANSLATE <span id="logo-right" style="color:#3283b8;"><i class="fa fa-language m-0"></i> MASTER </span></a>
+
+
+
+
+  <button type="button" id="sidebarCollapse" (click)="openOrClose()" class="navbar-btn active">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+
+  <div class="col"></div>
+
+  <button type="button" id="mobile-menu" class="mr-auto navbar-btn active " (click)="openOrCloseMobile()" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+
+  <div class=" d-none d-sm-block text-right">
+    <div>
+      <a class="nav-link" [routerLink]="['/account/login']"> <i class="fa fa-sign-in" aria-hidden="true"></i> Wyloguj </a>
+    </div>
+  </div>
+
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
+
+      <ul class="list-unstyled components menu-mobile-list">
+        <li [routerLinkActive]='["active"]' [routerLink]="['/home']" [routerLinkActiveOptions]="{exact: true}">
+          <a> <i class="fa fa-folder-o fa-lg"></i>Projekty</a>
+        </li>
+        <!--<li [routerLinkActive]='["active"]' [routerLink]="['contact-form']" >
+        <a> <i class="fa fa-address-book  fa-lg"></i>Kontakt</a>
+      </li>-->
+        <li>
+          <a> <i class="fa fa-address-book  fa-lg"></i>Kontakt</a>
+        </li>
+        <li [routerLink]="['/account/login']">
+          <a><i class="fa fa-sign-in" aria-hidden="true"></i> Wyloguj</a>
+</li>    
+      </ul>
+    </div>
+</nav>
+

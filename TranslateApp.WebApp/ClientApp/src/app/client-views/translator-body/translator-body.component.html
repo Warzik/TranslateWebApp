@@ -1,0 +1,153 @@
+<div style="background-color: #eef2f3">
+  <div id="content">
+    <div class="container  my-4">
+
+      <button (click)="addTranslate()" type="button" class="btn add-button"><i class="fa fa-plus"></i></button>
+
+      <div [ngClass]="{'loader-show': loading, 'loader-hide':!loading}" class="row">
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="hollowLoader mx-auto">
+            <div class="largeBox"></div>
+            <div class="smallBox"></div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div *ngIf="!loading" class="project-list">
+        <div *ngFor="let translate of translates[1]" class="card" [@OnLoad]>
+          <div class="card-header">
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn m-0">
+                <input type="radio" [disabled]="disableButton" [checked]="translate.translateApi==1" id="radio{{translate.id}}" (change)="useGoogleApiAutom(translate.id)" name="options{{translate.id}}"> Google
+              </label>
+              <label class="btn m-0">
+                <input type="radio" [disabled]="disableButton" [checked]="translate.translateApi==2" (change)="useYandexApiAutom(translate.id)" name="options{{translate.id}}"> Yandex
+              </label>
+            </div>
+
+
+
+            <div>
+              <a (click)="deleteTranslate(translate.id)"><i class="fa fa-trash"></i></a>
+            </div>
+          </div>
+
+
+          <div *ngIf="!translates[0].automaticallyTranslate; else elseBlock" class="card-body">
+            <div class="row">
+              <div class="col-lg-5">
+                <div class=" h5 detail-header  row justify-content-between">Tekst do tłumaczenia <div><a tooltipClass="my-tooltip" ngbTooltip="{{translates[0].fromLanguage}}"><i class="fa fa-exclamation-circle mr-1"></i></a> <a tooltipClass="my-tooltip" ngbTooltip="Język i sposób tłumaczenia można żmienić w ustawieniach projektu. "><i class="fa fa-question-circle"></i></a></div></div>
+                <textarea type="text"  autofocus spellcheck="false" class="form-control modalEnabledItem" id="{{translate.id}}" rows="5">{{translate.textToTranslate}}</textarea>
+              </div>
+              <div class=" col col-lg-2 d-flex align-items-lg-center justify-content-lg-center pt-4 pt-lg-0 pb-3 pb-lg-0 p-lg-0">
+
+                <button [disabled]="disableButton" (click)="onEnter(translate.id)" type="button" class="btn btn-primary ">
+                  <i class="fa fa-language" aria-hidden="true">  </i> Tłumacz
+
+                  <div id="loader{{translate.id}}" class="translateLoader float-left translate-loader-hide mr-2">
+                    <div class="largeBox"></div>
+                    <div class="smallBox"></div>
+                  </div>
+                </button>
+              </div>
+              <div class="col-lg-5">
+                <div class=" h5 detail-header row justify-content-between">Przetłumaczony tekst <div> <a tooltipClass="my-tooltip" ngbTooltip="{{translates[0].toLanguage}}"><i class="fa fa-exclamation-circle mr-1"></i></a> <a tooltipClass="my-tooltip" ngbTooltip="Język i sposób tłumaczenia można żmienić w ustawieniach projektu. "><i class="fa fa-question-circle"></i></a></div></div>
+                <textarea type="text" spellcheck="false" class="form-control modalEnabledItem border-orange " id="translatedText{{translate.id}}" rows="5" maxlength="5000" disabled="disabled">{{translate.translatedText}}</textarea>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #elseBlock>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class=" h5 detail-header  row justify-content-between">Tekst do tłumaczenia <div><a tooltipClass="my-tooltip" ngbTooltip="{{translates[0].fromLanguage}}"><i class="fa fa-exclamation-circle mr-1"></i></a> <a tooltipClass="my-tooltip" ngbTooltip="Język i sposób tłumaczenia można żmienić w ustawieniach projektu. "><i class="fa fa-question-circle"></i></a></div></div>
+                  <textarea type="text" (keyup)="onEnterAutom(translate.id)" autofocus spellcheck="false" class="form-control modalEnabledItem" id="{{translate.id}}" rows="5">{{translate.textToTranslate}}</textarea>
+                </div>
+                <div class="col-lg-6">
+                  <div class=" h5 detail-header row justify-content-between">Przetłumaczony tekst <div> <a tooltipClass="my-tooltip" ngbTooltip="{{translates[0].toLanguage}}"><i class="fa fa-exclamation-circle mr-1"></i></a> <a tooltipClass="my-tooltip" ngbTooltip="Język i sposób tłumaczenia można żmienić w ustawieniach projektu. "><i class="fa fa-question-circle"></i></a></div></div>
+                  <textarea type="text" spellcheck="false" class="form-control modalEnabledItem border-orange " id="translatedText{{translate.id}}" rows="5" maxlength="5000" disabled="disabled">{{translate.translatedText}}</textarea>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+    </div>
+</div>

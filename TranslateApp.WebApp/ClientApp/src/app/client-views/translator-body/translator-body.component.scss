@@ -1,0 +1,105 @@
+.card-title {
+  font-size: 2rem;
+}
+.card{
+  margin-bottom:2rem;
+}
+.add-button {
+  font-size: 1.5rem;
+  color: white;
+  background-color: #3283b8;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.project-list {
+  margin-top: 0.75rem;
+}
+
+$hollowBoxSize: 1.3rem;
+$hollowLight: #3283b8;
+$hollowDark: #ECECEC;
+$hollowTiming: .6s;
+
+.hollowLoader {
+  width: $hollowBoxSize;
+  height: $hollowBoxSize;
+  animation: loaderAnim $hollowTiming infinite ease-in-out;
+  outline: 1px solid transparent;
+
+  .largeBox {
+    height: $hollowBoxSize;
+    width: $hollowBoxSize;
+    background-color: $hollowLight;
+    outline: 1px solid transparent;
+    position: fixed;
+  }
+
+  .smallBox {
+    height: $hollowBoxSize;
+    width: $hollowBoxSize;
+    background-color: $hollowDark;
+    position: fixed;
+    z-index: 1;
+    outline: 1px solid transparent;
+    animation: smallBoxAnim $hollowTiming alternate infinite ease-in-out;
+  }
+}
+
+.loader-show {
+  transition: opacity 0.6s ease-out;
+  opacity: 1;
+}
+
+.loader-hide {
+  transition: opacity 0.6s ease-out;
+  opacity: 0;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between ;
+}
+.fa-trash {
+  font-size: 2.2rem;
+  cursor:pointer;
+}
+
+.translate-loader-show {
+ display:block;
+}
+
+.translate-loader-hide {
+  display: none;
+}
+
+.translateLoader {
+  width: $hollowBoxSize;
+  height: $hollowBoxSize;
+  animation: loaderAnim $hollowTiming infinite ease-in-out;
+  outline: 1px solid transparent;
+
+  .largeBox {
+    height: $hollowBoxSize;
+    width: $hollowBoxSize;
+    background-color: $hollowLight;
+    outline: 1px solid transparent;
+    position: fixed;
+  }
+
+  .smallBox {
+    height: $hollowBoxSize;
+    width: $hollowBoxSize;
+    background-color: $hollowDark;
+    position: fixed;
+    z-index: 1;
+    outline: 1px solid transparent;
+    animation: smallBoxAnim $hollowTiming alternate infinite ease-in-out;
+  }
+}
+
+.detail-header{
+  padding-left:15px;
+  padding-right:15px;
+}
+
