@@ -6,3 +6,4 @@
 3) Entity Framework Core 
 4) Angular 
 5) AutoMapper
+6) Bootstrap
